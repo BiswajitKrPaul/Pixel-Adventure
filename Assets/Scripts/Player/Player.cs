@@ -63,8 +63,8 @@ public class Player : MonoBehaviour {
     private void CollisionChecks() {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundlayer);
         isWallDetected = Physics2D.Raycast(transform.position, Vector2.right * facingDirection, sideWallCheckDistance, groundlayer);
-
-        if (isWallDetected && playerRb.velocity.y < 0) {
+        if (isWallDetected && playerRb.velocity.y < -.1f) {
+            Debug.Log(playerRb.velocity.y);
             canWallSlide = true;
         }
 
@@ -86,14 +86,14 @@ public class Player : MonoBehaviour {
     private void Flip() {
         facingDirection *= -1;
         facingRight = !facingRight;
-        playerRb.transform.Rotate(new Vector3(0, 180, 0));
+        transform.Rotate(new Vector3(0, 180, 0));
     }
 
     private void FlipController() {
-        if (facingRight && movingInput < 0) {
+        if (facingRight && playerRb.velocity.x < -.1f) {
             Flip();
         }
-        else if (!facingRight && movingInput > 0) {
+        else if (!facingRight && playerRb.velocity.x > 0.1f) {
             Flip();
         }
     }
@@ -135,12 +135,21 @@ public class Player : MonoBehaviour {
 
 
     private void UpdateAnimation() {
-        isMoving = playerRb.velocityX != 0;
+        HorizontalMoveCheck();
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", playerRb.velocity.y);
         animator.SetBool("isWallSliding", isWallSliding);
         animator.SetBool("isWallDetected", isWallDetected);
+    }
+
+    private void HorizontalMoveCheck() {
+        if (playerRb.velocity.x < -.1f || playerRb.velocity.x > .1f) {
+            isMoving = true;
+        }
+        else {
+            isMoving = false;
+        }
     }
 
     private void OnDrawGizmos() {
