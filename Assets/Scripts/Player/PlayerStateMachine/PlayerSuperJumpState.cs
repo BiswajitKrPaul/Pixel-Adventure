@@ -1,14 +1,12 @@
-﻿using UnityEngine;
-
-namespace Player.PlayerStateMachine {
-    public class PlayerAirState : PlayerSuperJumpState {
+﻿namespace Player.PlayerStateMachine {
+    public class PlayerSuperJumpState : PlayerState {
         public override void Enter() {
             base.Enter();
         }
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (Input.GetKeyDown(KeyCode.Space)) StateMachine.ChangeState(DoubleJumpState);
+            if (IsOnFloor) StateMachine.ChangeState(IdleState);
         }
 
         public override void Exit() {

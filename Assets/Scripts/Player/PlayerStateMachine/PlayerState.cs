@@ -16,8 +16,11 @@ namespace Player.PlayerStateMachine {
         protected PlayerMoveState MoveState => player.playerMoveState;
         protected PlayerAirState AirState => player.playerAirState;
         protected PlayerJumpState JumpState => player.playerJumpState;
+        protected PlayerDoubleJumpState DoubleJumpState => player.playerDoubleJumpState;
 
         protected bool IsOnFloor => player.IsOnFloor();
+
+        protected bool IsWallDetected => player.IsWallDetected();
 
         public virtual void Enter() {
             PlayerRb = player.playerRb;
@@ -34,9 +37,10 @@ namespace Player.PlayerStateMachine {
             player.animator.SetBool(animationBoolName, false);
         }
 
-        public void SetUp(PlayerController p, PlayerStateMachine sM, string animBoolName) {
-            player = p;
-            StateMachine = sM;
+        public void SetUp(PlayerController playerController, PlayerStateMachine playerStateMachine,
+            string animBoolName) {
+            player = playerController;
+            StateMachine = playerStateMachine;
             animationBoolName = animBoolName;
         }
 

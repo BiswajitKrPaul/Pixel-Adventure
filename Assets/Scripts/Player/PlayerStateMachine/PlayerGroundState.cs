@@ -9,6 +9,7 @@ namespace Player.PlayerStateMachine {
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
             if (Input.GetKeyDown(KeyCode.Space)) StateMachine.ChangeState(JumpState);
+            if (!IsOnFloor) StateMachine.ChangeState(AirState);
         }
 
         public override void Exit() {

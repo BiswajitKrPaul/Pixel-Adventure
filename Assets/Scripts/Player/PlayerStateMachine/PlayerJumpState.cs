@@ -9,7 +9,7 @@
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (PlayerRb.velocityY < 0) StateMachine.ChangeState(AirState);
+            if (!IsOnFloor) StateMachine.ChangeState(AirState);
         }
 
         public override void Exit() {

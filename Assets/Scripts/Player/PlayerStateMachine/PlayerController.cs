@@ -8,13 +8,16 @@ namespace Player.PlayerStateMachine {
         public PlayerStateMachine stateMachine;
         public PlayerJumpState playerJumpState;
         public PlayerAirState playerAirState;
+        public PlayerDoubleJumpState playerDoubleJumpState;
 
 
         [Header("Player GameObjects")] public Rigidbody2D playerRb;
         public Animator animator;
         public LayerMask groundLayerMask;
         public float groundCheckDistance;
+        public float wallCheckDistance;
         public Transform groundCheck;
+        public Transform wallCheck;
 
 
         private float facingDirection = 1f;
@@ -25,6 +28,7 @@ namespace Player.PlayerStateMachine {
             playerMoveState.SetUp(this, stateMachine, StringConstants.Move);
             playerJumpState.SetUp(this, stateMachine, StringConstants.Jump);
             playerAirState.SetUp(this, stateMachine, StringConstants.Jump);
+            playerDoubleJumpState.SetUp(this, stateMachine, StringConstants.Jump);
         }
 
         private void Start() {
@@ -44,8 +48,11 @@ namespace Player.PlayerStateMachine {
         }
 
         private void OnDrawGizmos() {
-            var position = groundCheck.transform.position;
+            var position = groundCheck.position;
+            var wallPosition = wallCheck.position;
             Gizmos.DrawLine(position, new Vector3(position.x, position.y - groundCheckDistance));
+            Gizmos.DrawLine(wallPosition,
+                new Vector3(wallPosition.x + wallCheckDistance * facingDirection, wallPosition.y));
         }
 
         private void Flip() {
@@ -72,6 +79,11 @@ namespace Player.PlayerStateMachine {
             var isOnFloor = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance,
                 groundLayerMask);
             return isOnFloor;
+        }
+
+        public bool IsWallDetected() {
+            return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance,
+                groundLayerMask);
         }
     }
 }
