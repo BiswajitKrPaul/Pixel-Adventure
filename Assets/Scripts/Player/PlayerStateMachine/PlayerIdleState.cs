@@ -7,7 +7,7 @@
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (XInput != 0) StateMachine.ChangeState(MoveState);
+            if (XInput != 0 && IsOnFloor) StateMachine.ChangeState(MoveState);
         }
 
         public override void Exit() {

@@ -12,6 +12,7 @@
         public const string Move = "Move";
         public const string Jump = "Jump";
         public const string YVelocity = "yVelocity";
+        public const string WallSlide = "WallSlide";
 
         #endregion
     }

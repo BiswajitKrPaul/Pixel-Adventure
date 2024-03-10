@@ -11,7 +11,7 @@ namespace Player.PlayerStateMachine {
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
             SetVelocity(moveSpeed * XInput, PlayerRb.velocityY);
-            if (XInput == 0) StateMachine.ChangeState(IdleState);
+            if (XInput == 0 && IsOnFloor) StateMachine.ChangeState(IdleState);
         }
 
         public override void Exit() {

@@ -9,6 +9,7 @@ namespace Player.PlayerStateMachine {
         public PlayerJumpState playerJumpState;
         public PlayerAirState playerAirState;
         public PlayerDoubleJumpState playerDoubleJumpState;
+        public PlayerWallSlideState playerWallSlideState;
 
 
         [Header("Player GameObjects")] public Rigidbody2D playerRb;
@@ -20,7 +21,7 @@ namespace Player.PlayerStateMachine {
         public Transform wallCheck;
 
 
-        private float facingDirection = 1f;
+        public float facingDirection = 1f;
         private bool facingRight = true;
 
         private void Awake() {
@@ -29,6 +30,7 @@ namespace Player.PlayerStateMachine {
             playerJumpState.SetUp(this, stateMachine, StringConstants.Jump);
             playerAirState.SetUp(this, stateMachine, StringConstants.Jump);
             playerDoubleJumpState.SetUp(this, stateMachine, StringConstants.Jump);
+            playerWallSlideState.SetUp(this, stateMachine, StringConstants.WallSlide);
         }
 
         private void Start() {

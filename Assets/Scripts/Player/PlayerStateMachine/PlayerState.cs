@@ -17,10 +17,12 @@ namespace Player.PlayerStateMachine {
         protected PlayerAirState AirState => player.playerAirState;
         protected PlayerJumpState JumpState => player.playerJumpState;
         protected PlayerDoubleJumpState DoubleJumpState => player.playerDoubleJumpState;
+        protected PlayerWallSlideState WallSlideState => player.playerWallSlideState;
 
         protected bool IsOnFloor => player.IsOnFloor();
 
         protected bool IsWallDetected => player.IsWallDetected();
+        protected float FacingDirection => player.facingDirection;
 
         public virtual void Enter() {
             PlayerRb = player.playerRb;
