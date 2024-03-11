@@ -10,6 +10,7 @@ namespace Player.PlayerStateMachine {
         public PlayerAirState playerAirState;
         public PlayerDoubleJumpState playerDoubleJumpState;
         public PlayerWallSlideState playerWallSlideState;
+        public PlayerWallJumpState playerWallJumpState;
 
 
         [Header("Player GameObjects")] public Rigidbody2D playerRb;
@@ -31,6 +32,7 @@ namespace Player.PlayerStateMachine {
             playerAirState.SetUp(this, stateMachine, StringConstants.Jump);
             playerDoubleJumpState.SetUp(this, stateMachine, StringConstants.Jump);
             playerWallSlideState.SetUp(this, stateMachine, StringConstants.WallSlide);
+            playerWallJumpState.SetUp(this, stateMachine, StringConstants.Jump);
         }
 
         private void Start() {
@@ -43,7 +45,7 @@ namespace Player.PlayerStateMachine {
 
 
         private void OnGUI() {
-            GUILayout.BeginArea(new Rect(10f, 10f, 400f, 100f));
+            GUILayout.BeginArea(new Rect(10f, 10f, 600f, 100f));
             var content = stateMachine.CurrentState.name;
             GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
             GUILayout.EndArea();

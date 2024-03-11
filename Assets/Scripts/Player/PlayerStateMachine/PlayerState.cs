@@ -18,6 +18,7 @@ namespace Player.PlayerStateMachine {
         protected PlayerJumpState JumpState => player.playerJumpState;
         protected PlayerDoubleJumpState DoubleJumpState => player.playerDoubleJumpState;
         protected PlayerWallSlideState WallSlideState => player.playerWallSlideState;
+        protected PlayerWallJumpState WallJumpState => player.playerWallJumpState;
 
         protected bool IsOnFloor => player.IsOnFloor();
 
