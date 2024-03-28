@@ -6,8 +6,9 @@
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (IsOnFloor) StateMachine.ChangeState(IdleState);
-            if (IsWallDetected && !IsOnFloor) StateMachine.ChangeState(WallSlideState);
+            if (IsOnFloor) stateMachine.ChangeState(IdleState);
+            if (IsWallDetected && !IsOnFloor) stateMachine.ChangeState(WallSlideState);
+            // if (XInput != 0) SetVelocity(8 * XInput, PlayerRb.velocityY);
         }
 
         public override void Exit() {

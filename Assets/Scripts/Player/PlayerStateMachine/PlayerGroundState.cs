@@ -8,8 +8,8 @@ namespace Player.PlayerStateMachine {
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (Input.GetKeyDown(KeyCode.Space)) StateMachine.ChangeState(JumpState);
-            if (!IsOnFloor) StateMachine.ChangeState(AirState);
+            if (Input.GetKeyDown(KeyCode.Space)) stateMachine.ChangeState(JumpState);
+            if (!IsOnFloor) stateMachine.ChangeState(AirState);
         }
 
         public override void Exit() {

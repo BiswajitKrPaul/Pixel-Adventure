@@ -7,10 +7,10 @@ namespace Player.PlayerStateMachine {
         private PlayerController player;
 
 
-        protected Rigidbody2D PlayerRb;
-        protected PlayerStateMachine StateMachine;
-        protected float XInput;
-        protected float YInput;
+        protected Rigidbody2D rb;
+        protected PlayerStateMachine stateMachine;
+        protected float xInput;
+        protected float yInput;
 
         protected PlayerIdleState IdleState => player.playerIdleState;
         protected PlayerMoveState MoveState => player.playerMoveState;
@@ -26,14 +26,14 @@ namespace Player.PlayerStateMachine {
         protected float FacingDirection => player.facingDirection;
 
         public virtual void Enter() {
-            PlayerRb = player.playerRb;
+            rb = player.playerRb;
             player.animator.SetBool(animationBoolName, true);
         }
 
         public virtual void UpdateStatePerFrame() {
-            XInput = Input.GetAxisRaw("Horizontal");
-            YInput = Input.GetAxisRaw("Vertical");
-            player.animator.SetFloat(StringConstants.YVelocity, PlayerRb.velocity.y);
+            xInput = Input.GetAxisRaw("Horizontal");
+            yInput = Input.GetAxisRaw("Vertical");
+            player.animator.SetFloat(StringConstants.YVelocity, rb.velocity.y);
         }
 
         public virtual void Exit() {
@@ -43,7 +43,7 @@ namespace Player.PlayerStateMachine {
         public void SetUp(PlayerController playerController, PlayerStateMachine playerStateMachine,
             string animBoolName) {
             player = playerController;
-            StateMachine = playerStateMachine;
+            stateMachine = playerStateMachine;
             animationBoolName = animBoolName;
         }
 

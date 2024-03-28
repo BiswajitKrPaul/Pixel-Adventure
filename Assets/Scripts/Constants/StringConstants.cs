@@ -5,7 +5,6 @@
         public const string IsWallSliding = "isWallSliding";
         public const string IsWallDetected = "isWallDetected";
 
-
         #region PlayerStateMachineStrings
 
         public const string Idle = "Idle";

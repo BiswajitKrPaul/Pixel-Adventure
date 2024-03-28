@@ -11,18 +11,18 @@ namespace Player.PlayerStateMachine {
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (!IsWallDetected) StateMachine.ChangeState(AirState);
+            if (!IsWallDetected) stateMachine.ChangeState(AirState);
             if (Input.GetKeyDown(KeyCode.Space)) {
                 SetVelocity(wallJumpForce.x * -FacingDirection, wallJumpForce.y);
-                StateMachine.ChangeState(AirState);
+                stateMachine.ChangeState(AirState);
                 return;
             }
 
-            if (YInput < 0)
-                SetVelocity(0, PlayerRb.velocityY);
+            if (yInput < 0)
+                SetVelocity(0, rb.velocityY);
             else
-                SetVelocity(0, PlayerRb.velocityY * wallSlideFriction);
-            if (IsOnFloor) StateMachine.ChangeState(IdleState);
+                SetVelocity(0, rb.velocityY * wallSlideFriction);
+            if (IsOnFloor) stateMachine.ChangeState(IdleState);
         }
 
         public override void Exit() {

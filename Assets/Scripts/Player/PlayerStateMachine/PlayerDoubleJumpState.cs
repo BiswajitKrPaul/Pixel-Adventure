@@ -4,7 +4,7 @@
 
         public override void Enter() {
             base.Enter();
-            SetVelocity(PlayerRb.velocityX, doubleJumpForce);
+            SetVelocity(rb.velocityX, doubleJumpForce);
         }
 
         public override void UpdateStatePerFrame() {

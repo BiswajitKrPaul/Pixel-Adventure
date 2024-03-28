@@ -6,9 +6,9 @@
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (IsWallDetected) StateMachine.ChangeState(WallSlideState);
+            if (IsWallDetected) stateMachine.ChangeState(WallSlideState);
 
-            if (IsOnFloor) StateMachine.ChangeState(IdleState);
+            if (IsOnFloor) stateMachine.ChangeState(IdleState);
         }
 
         public override void Exit() {

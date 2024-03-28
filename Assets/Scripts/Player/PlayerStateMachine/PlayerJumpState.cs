@@ -4,12 +4,12 @@
 
         public override void Enter() {
             base.Enter();
-            SetVelocity(PlayerRb.velocityX, jumpForce);
+            SetVelocity(rb.velocityX, jumpForce);
         }
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (!IsOnFloor) StateMachine.ChangeState(AirState);
+            if (!IsOnFloor) stateMachine.ChangeState(AirState);
         }
 
         public override void Exit() {

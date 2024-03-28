@@ -8,7 +8,7 @@ namespace Player.PlayerStateMachine {
 
         public override void UpdateStatePerFrame() {
             base.UpdateStatePerFrame();
-            if (Input.GetKeyDown(KeyCode.Space)) StateMachine.ChangeState(DoubleJumpState);
+            if (Input.GetKeyDown(KeyCode.Space)) stateMachine.ChangeState(DoubleJumpState);
         }
 
         public override void Exit() {
